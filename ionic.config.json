@@ -1,0 +1,7 @@
+{
+  "name": "ionic-productos-rest",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
