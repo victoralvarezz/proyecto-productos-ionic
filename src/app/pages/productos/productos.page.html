@@ -1,0 +1,199 @@
+<ion-header>
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/inicio"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Productos</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <div class="page-header">
+    <h1>Catálogo de productos</h1>
+
+    <p>
+      Productos cargados:
+      <strong>{{ products.length }}</strong>
+      de
+      <strong>{{ total }}</strong>
+    </p>
+
+    <p>
+      Página
+      <strong>{{ currentPage }}</strong>
+      de
+      <strong>{{ totalPages }}</strong>
+    </p>
+  </div>
+
+  @if (loading) {
+
+    <div class="loading">
+      <ion-spinner></ion-spinner>
+      <p>Cargando productos...</p>
+    </div>
+
+  }
+
+  @if (error) {
+
+    <ion-card>
+
+      <ion-card-header>
+        <ion-card-title>
+          Error
+        </ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+
+        <p>{{ error }}</p>
+
+        <ion-button (click)="loadProducts()">
+          Reintentar
+        </ion-button>
+
+      </ion-card-content>
+
+    </ion-card>
+
+  }
+
+  @if (!loading && !error) {
+
+    <div class="products-grid">
+
+      @for (product of products; track product.id) {
+
+        <ion-card class="product-card">
+
+          <div class="image-container">
+
+            <img
+              [src]="product.thumbnail"
+              [alt]="product.title">
+
+          </div>
+
+          <ion-card-header>
+
+            <ion-card-title>
+              {{ product.title }}
+            </ion-card-title>
+
+          </ion-card-header>
+
+          <ion-card-content>
+
+            <p>
+              <strong>ID:</strong>
+              {{ product.id }}
+            </p>
+
+            <p>
+              <strong>Categoría:</strong>
+              {{ product.category }}
+            </p>
+
+            <p>
+              <strong>Marca:</strong>
+              {{ product.brand || 'Sin marca' }}
+            </p>
+
+            <p>
+              <strong>Precio:</strong>
+              {{ product.price | currency:'EUR' }}
+            </p>
+
+            <p>
+              <strong>Descuento:</strong>
+              {{ product.discountPercentage }} %
+            </p>
+
+            <p>
+              <strong>Valoración:</strong>
+              ⭐ {{ product.rating }}
+            </p>
+
+            <p>
+              <strong>Stock:</strong>
+              {{ product.stock }} unidades
+            </p>
+
+            <div class="dimensions">
+
+              <p>
+                <strong>Ancho:</strong>
+                {{ product.dimensions.width }}
+              </p>
+
+              <p>
+                <strong>Alto:</strong>
+                {{ product.dimensions.height }}
+              </p>
+
+            </div>
+
+            <div class="stock-value">
+
+              <strong>
+                Stock valorado
+              </strong>
+
+              <span>
+                {{ getStockValue(product) | currency:'EUR' }}
+              </span>
+
+            </div>
+
+          </ion-card-content>
+
+        </ion-card>
+
+      }
+
+    </div>
+
+    <div class="pagination">
+
+      <ion-button
+        (click)="previousPage()"
+        [disabled]="currentPage === 1">
+
+        Anterior
+
+      </ion-button>
+
+      <span>
+        Página {{ currentPage }} de {{ totalPages }}
+      </span>
+
+      <ion-button
+        (click)="nextPage()"
+        [disabled]="currentPage === totalPages">
+
+        Siguiente
+
+      </ion-button>
+
+    </div>
+
+    <div class="back-home">
+
+      <ion-button
+        routerLink="/inicio"
+        fill="outline">
+
+        Volver a Inicio
+
+      </ion-button>
+
+    </div>
+
+  }
+
+</ion-content>

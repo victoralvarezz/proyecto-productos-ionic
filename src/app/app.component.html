@@ -1,3 +1,18 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+
+  <ion-router-outlet>
+  </ion-router-outlet>
+
+  <ion-button
+    class="theme-toggle"
+    (click)="toggleDarkMode()">
+
+    @if (darkMode) {
+      Modo claro
+    } @else {
+      Modo oscuro
+    }
+
+  </ion-button>
+
 </ion-app>

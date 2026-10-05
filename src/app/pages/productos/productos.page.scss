@@ -1,0 +1,91 @@
+.page-header {
+  margin-bottom: 25px;
+}
+
+.page-header h1 {
+  margin-bottom: 10px;
+}
+
+.loading {
+  text-align: center;
+  padding: 50px;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(280px, 1fr)
+  );
+  gap: 20px;
+}
+
+.product-card {
+  height: 100%;
+  margin: 0;
+}
+
+.image-container {
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.product-card ion-card-title {
+  font-size: 20px;
+}
+
+.product-card p {
+  margin: 8px 0;
+}
+
+.dimensions {
+  display: flex;
+  gap: 25px;
+  margin-top: 15px;
+}
+
+.stock-value {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 8px;
+  background: var(--ion-color-light);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stock-value span {
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--ion-color-primary);
+}
+
+.pagination {
+  margin-top: 35px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+
+  flex-wrap: wrap;
+}
+
+.back-home {
+  margin-top: 25px;
+  text-align: center;
+}
+
+body.dark .stock-value {
+  background: #2b2b2b;
+}
